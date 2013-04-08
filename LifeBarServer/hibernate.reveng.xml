@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd" >
+
+<hibernate-reverse-engineering>
+	<table name="Sg_CategoryInfo" schema="dbo" catalog="TMRB">
+		<primary-key>
+			<generator class="native"></generator>
+		</primary-key>
+	</table>
+	<table name="Sg_CompanyInfo" schema="dbo" catalog="TMRB">
+		<primary-key>
+			<generator class="native"></generator>
+		</primary-key>
+	</table>
+	<table name="Sg_DepartmentInfo" schema="dbo" catalog="TMRB">
+		<primary-key>
+			<generator class="native"></generator>
+		</primary-key>
+	</table>
+	<table name="Sg_DistrictInfo" schema="dbo" catalog="TMRB">
+		<primary-key>
+			<generator class="native"></generator>
+		</primary-key>
+	</table>
+	<table name="Sg_KnowledgeInfo" schema="dbo" catalog="TMRB">
+		<primary-key>
+			<generator class="native"></generator>
+		</primary-key>
+	</table>
+	<table name="Sg_MaterialInfo" schema="dbo" catalog="TMRB">
+		<primary-key>
+			<generator class="native"></generator>
+		</primary-key>
+	</table>
+	<table name="Sg_MaterialKnowledge" schema="dbo" catalog="TMRB">
+		<primary-key>
+			<generator class="native"></generator>
+		</primary-key>
+	</table>
+	<table name="Sg_Mo" schema="dbo" catalog="TMRB">
+		<primary-key>
+			<generator class="native"></generator>
+		</primary-key>
+	</table>
+	<table name="Sg_PagerInfo" schema="dbo" catalog="TMRB">
+		<primary-key>
+			<generator class="native"></generator>
+		</primary-key>
+	</table>
+	<table name="Sg_PaperInfo" schema="dbo" catalog="TMRB">
+		<primary-key>
+			<generator class="native"></generator>
+		</primary-key>
+	</table>
+	<table name="Sg_PaperQuestion" schema="dbo" catalog="TMRB">
+		<primary-key>
+			<generator class="native"></generator>
+		</primary-key>
+	</table>
+	<table name="Sg_PortInfo" schema="dbo" catalog="TMRB">
+		<primary-key>
+			<generator class="native"></generator>
+		</primary-key>
+	</table>
+	<table name="Sg_QuestionInfo" schema="dbo" catalog="TMRB">
+		<primary-key>
+			<generator class="native"></generator>
+		</primary-key>
+	</table>
+	<table name="Sg_ReceiveInfo" schema="dbo" catalog="TMRB">
+		<primary-key>
+			<generator class="native"></generator>
+		</primary-key>
+	</table>
+	<table name="Sg_SendInfo" schema="dbo" catalog="TMRB">
+		<primary-key>
+			<generator class="native"></generator>
+		</primary-key>
+	</table>
+	<table name="Sg_UserCategory" schema="dbo" catalog="TMRB">
+		<primary-key>
+			<generator class="native"></generator>
+		</primary-key>
+	</table>
+	<table name="Sg_UserGroup" schema="dbo" catalog="TMRB">
+		<primary-key>
+			<generator class="native"></generator>
+		</primary-key>
+	</table>
+	<table name="Sg_UserInfo" schema="dbo" catalog="TMRB">
+		<primary-key>
+			<generator class="native"></generator>
+		</primary-key>
+	</table>
+<table name="Sg_UserPower" schema="dbo" catalog="TMRB">
+	<primary-key>
+		<generator class="native"></generator>
+	</primary-key>
+</table>
+</hibernate-reverse-engineering>

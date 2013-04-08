@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<package name="userInfo" namespace="/user" extends="json-default">
+		<action name="json_*" method="{1}" class="userInfo">
+			<result name="orginfo" type="json">
+				<param name="ignoreHierarchy">false</param>
+				<param name="excludeNullProperties">true</param>
+				<!-- <param name="includeProperties">person.*, person\.name</param> -->
+				<param name="excludeProperties">actionErrors,actionMessages,errors,fieldErrors,locale,errorMessages,user.userpwd</param>
+			</result>
+			<result name="fail" type="json">
+				<param name="ignoreHierarchy">false</param>
+				<param name="excludeNullProperties">true</param>
+				<param name="includeProperties">result,message</param>
+			</result>
+		</action>
+		<action name="list_*" method="{1}" class="userInfo">
+		</action>
+	</package>
+</struts>

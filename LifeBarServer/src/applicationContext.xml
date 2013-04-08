@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+	http://www.springframework.org/schema/context  
+	http://www.springframework.org/schema/context/spring-context-2.5.xsd
+    http://www.springframework.org/schema/aop 
+	http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
+    http://www.springframework.org/schema/tx
+    http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
+
+	<context:annotation-config />
+	<!-- 配置数据源 -->
+	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver">
+		</property>
+		<property name="url" value="jdbc:mysql://localhost:3306/LifeBar"></property>
+		<property name="username" value="root"></property>
+		<property name="password" value="lomanchen123#@!"></property>
+		
+	</bean>
+	<!-- 配置sessionFactory -->
+	
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="dataSource">
+			<ref bean="dataSource" />
+		</property>
+		<property name="mappingResources">
+			<list>
+				<!--
+					<value>com/smst/model/User.hbm.xml</value>
+					<value>com/smst/model/Page.hbm.xml</value>
+					<value>com/smst/model/Firm.hbm.xml</value>
+				-->
+				
+				<value>com/banshan/lifebarServer/model/TblCompany.hbm.xml</value>
+				<value>com/banshan/lifebarServer/model/TblDiscountcard.hbm.xml</value>
+				<value>com/banshan/lifebarServer/model/TblPic.hbm.xml</value>
+				<value>com/banshan/lifebarServer/model/TblProduct.hbm.xml</value>
+				<value>com/banshan/lifebarServer/model/TblUser.hbm.xml</value>
+				<value>com/banshan/lifebarServer/model/TblProductType.hbm.xml</value>
+				<value>com/banshan/lifebarServer/model/TblCompanyConf.hbm.xml</value>
+				<value>com/banshan/lifebarServer/model/TblTypeOfProduct.hbm.xml</value>
+				
+				
+			</list>
+		</property>
+		<property name="hibernateProperties">
+			<value>
+				hibernate.dialect=org.hibernate.dialect.SybaseDialect
+				hibernate.hbm2ddl.auto=update
+				hibernate.show_sql=true
+				hibernate.format_sql=false
+				hibernate.cache.use_second_level_cache=true
+				hibernate.cache.use_query_cache=false
+				hibernate.cache.provider_class=org.hibernate.cache.EhCacheProvider
+			</value>
+		</property>
+	</bean>
+
+
+	<!-- 配置事务管理器 -->
+	<bean id="transactionManager"
+		class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<property name="sessionFactory">
+			<ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<tx:annotation-driven transaction-manager="transactionManager" />
+	<!-- 配置事务传播特性 -->
+	<tx:advice id="txAdvice" transaction-manager="transactionManager">
+		<tx:attributes>
+			<tx:method name="add*" propagation="REQUIRED" />
+			<tx:method name="delete*" propagation="REQUIRED" />
+			<tx:method name="modify*" propagation="REQUIRED" />
+			<tx:method name="*" read-only="true" />
+		</tx:attributes>
+	</tx:advice>
+	<!-- 那些类的哪些方法参与事务 -->
+	<aop:config>
+		<aop:advisor pointcut="execution(* com.banshan.lifebarServer.*.*(..))"
+			advice-ref="txAdvice" />
+	</aop:config>
+	
+	<!-- Service定义 -->
+	<bean id="sgPageInfoBaseService" class="com.banshan.lifebarServer.service.impl.SgPagerInfoServiceImpl"></bean>
+	<bean id="sgUserInfoBaseService" class="com.banshan.lifebarServer.service.impl.SgUserInfoServiceImpl"></bean>
+	<bean id="sgPagerInfoService" class="com.banshan.lifebarServer.service.impl.SgPagerInfoServiceImpl"></bean>
+	<bean id="sgUserGroupService" class="com.banshan.lifebarServer.service.impl.SgUserGroupServiceImpl"></bean>
+	<bean id="sgUserInfoService" class="com.banshan.lifebarServer.service.impl.SgUserInfoServiceImpl"></bean>
+	<bean id= "jsonTestService" class ="com.banshan.lifebarServer.service.impl.JsonTestServiceImpl"></bean>
+	<bean id= "userInfoService" class="com.banshan.lifebarServer.service.impl.UserInfoServiceImpl"></bean>
+	<bean id= "discountCardInfoService" class="com.banshan.lifebarServer.service.impl.DiscountCardInfoServiceImpl"></bean>
+	<bean id= "picInfoService" class="com.banshan.lifebarServer.service.impl.PicInfoServiceImpl"></bean>
+	<bean id= "orgInfoService" class="com.banshan.lifebarServer.service.impl.OrgInfoServiceImpl"></bean>
+	<bean id= "productInfoService" class="com.banshan.lifebarServer.service.impl.ProductInfoServiceImpl"></bean>
+	<bean id= "productTypeInfoService" class="com.banshan.lifebarServer.service.impl.ProductTypeInfoServiceImpl"></bean>
+	<bean id= "orgConfService" class="com.banshan.lifebarServer.service.impl.OrgConfServiceImpl"></bean>
+	
+	<!-- 看Struts.xml -->
+	<bean id="userList" class="com.banshan.lifebarServer.action.SgUserInfoAction"></bean>
+	<bean id="pageList" class="com.banshan.lifebarServer.action.SgPagerInfoAction"></bean>
+	<bean id="jsonTest" class="com.banshan.lifebarServer.action.JsonTestAction"></bean>
+	<bean id="userInfo" class="com.banshan.lifebarServer.action.UserInfoAction"></bean>
+	<bean id="orgInfo" class="com.banshan.lifebarServer.action.OrgInfoAction"></bean>
+	<bean id="productInfo" class="com.banshan.lifebarServer.action.ProductInfoAction"></bean>
+	<bean id="fileUpload" class="com.banshan.lifebarServer.action.FileUploadAction"></bean>
+</beans>

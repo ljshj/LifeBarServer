@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+	<package name="orgInfo" namespace="/org" extends="json-default">
+		<action name="json_*" method="{1}" class="orgInfo">
+			<result name="orginfo" type="json">
+				<param name="ignoreHierarchy">false</param>
+				<param name="excludeNullProperties">true</param>
+				<!-- <param name="includeProperties">person.*, person\.name</param> -->
+				<param name="includeProperties">result,message,org.*,orgConfList</param>
+				<param name="excludeProperties">org.cpwd</param>
+				
+			</result>
+			<result name="producttypes" type="json">
+				<param name="ignoreHierarchy">false</param>
+				<param name="excludeNullProperties">true</param>
+				<!-- <param name="includeProperties">person.*, person\.name</param> -->
+				<param name="includeProperties">result,message,productTypeList.*</param>
+			</result>
+			<result name="products" type="json">
+				<param name="ignoreHierarchy">false</param>
+				<param name="excludeNullProperties">true</param>
+				<!-- <param name="includeProperties">person.*, person\.name</param> -->
+				<param name="includeProperties">result,message,productList.*</param>
+			</result>
+			<result name="addproduct" type="json">
+				<param name="ignoreHierarchy">false</param>
+				<param name="excludeNullProperties">true</param>
+				<param name="includeProperties">result,message,productId</param>
+			</result>
+			<result name="updateproduct" type="json">
+				<param name="ignoreHierarchy">false</param>
+				<param name="excludeNullProperties">true</param>
+				<param name="includeProperties">result,message</param>
+			</result>
+			<result name="fail" type="json">
+				<param name="ignoreHierarchy">false</param>
+				<param name="excludeNullProperties">true</param>
+				<param name="includeProperties">result,message</param>
+			</result>
+			<result name="success" type="json">
+				<param name="ignoreHierarchy">false</param>
+				<param name="excludeNullProperties">true</param>
+				<param name="includeProperties">result,message</param>
+			</result>
+			<result name="picpath" type="json">
+				<param name="ignoreHierarchy">false</param>
+				<param name="excludeNullProperties">true</param>
+				<!-- <param name="includeProperties">person.*, person\.name</param> -->
+				<param name="includeProperties">result,message,picPath</param>
+			</result>
+		</action>
+		
+		<action name="list_*" method="{1}" class="userInfo">
+		</action>
+	</package>
+	
+	<package name="productInfo" namespace="/product" extends="json-default">
+		<action name="json_*" method="{1}" class="productInfo">
+			<result name="success" type="json">
+				<param name="ignoreHierarchy">false</param>
+				<param name="excludeNullProperties">true</param>
+				<param name="includeProperties">result,message</param>
+			</result>
+			<result name="pics" type="json">
+				<param name="ignoreHierarchy">false</param>
+				<param name="excludeNullProperties">true</param>
+				<!-- <param name="includeProperties">person.*, person\.name</param> -->
+				<param name="includeProperties">result,message,picList.*</param>
+			</result>
+			<result name="types" type="json">
+				<param name="ignoreHierarchy">false</param>
+				<param name="excludeNullProperties">true</param>
+				<!-- <param name="includeProperties">person.*, person\.name</param> -->
+				<param name="includeProperties">result,message,typeList.*</param>
+			</result>
+			<result name="picfortype" type="json">
+				<param name="ignoreHierarchy">false</param>
+				<param name="excludeNullProperties">true</param>
+				<!-- <param name="includeProperties">person.*, person\.name</param> -->
+				<param name="includeProperties">result,message,pic.*</param>
+			</result>
+			<result name="fail" type="json">
+				<param name="ignoreHierarchy">false</param>
+				<param name="excludeNullProperties">true</param>
+				<param name="includeProperties">result,message</param>
+			</result>
+			<result name="picpath" type="json">
+				<param name="ignoreHierarchy">false</param>
+				<param name="excludeNullProperties">true</param>
+				<!-- <param name="includeProperties">person.*, person\.name</param> -->
+				<param name="includeProperties">result,message,picPath</param>
+			</result>
+			<result name="addpic" type="json">
+				<param name="ignoreHierarchy">false</param>
+				<param name="excludeNullProperties">true</param>
+				<param name="includeProperties">result,message</param>
+			</result>
+			<result name="updatepic" type="json">
+				<param name="ignoreHierarchy">false</param>
+				<param name="excludeNullProperties">true</param>
+				<param name="includeProperties">result,message</param>
+			</result>
+			
+		</action>
+		<action name="list_*" method="{1}" class="userInfo">
+		</action>
+	</package>
+	<package name ="fileUpload" namespace="/" extends ="json-default" > 
+        <action name ="fileUpload" class ="fileUpload" > 
+            <interceptor-ref name ="fileUploadStack" /> 
+            <result type="json">
+				<param name="ignoreHierarchy">false</param>
+				<param name="excludeNullProperties">true</param>
+				<param name="includeProperties">result,message,tmpFilePath</param>
+			</result> 
+        </action> 
+    </package> 
+</struts>
