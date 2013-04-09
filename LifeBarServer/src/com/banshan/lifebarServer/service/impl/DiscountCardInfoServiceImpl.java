@@ -7,13 +7,17 @@ import javax.annotation.Resource;
 import org.hibernate.SessionFactory;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.banshan.lifebarServer.common.LifeBarDefination;
 import com.banshan.lifebarServer.model.TblDiscountcard;
+import com.banshan.lifebarServer.model.TblPic;
 import com.banshan.lifebarServer.service.DiscountCardInfoService;
+import com.banshan.lifebarServer.service.PicInfoService;
 @Transactional
 public class DiscountCardInfoServiceImpl implements DiscountCardInfoService {
 
 	@Resource private SessionFactory sessionFactory;
-	
+	@Resource private PicInfoService picInfoService;
+
 	@Override
 	public void save(TblDiscountcard t) {
 		sessionFactory.getCurrentSession().persist(t);
@@ -21,7 +25,12 @@ public class DiscountCardInfoServiceImpl implements DiscountCardInfoService {
 
 	@Override
 	public void delete(long Id) {
-		sessionFactory.getCurrentSession().delete(sessionFactory.getCurrentSession().load(TblDiscountcard.class, Id));
+		sessionFactory.getCurrentSession().delete(sessionFactory.getCurrentSession().load(TblDiscountcard.class, (int)Id));
+		List<TblPic> picList = picInfoService.findPicsByRefIdAndRefType(Id, LifeBarDefination.LB_PIC_TYPE_DISCOUNTCARD);
+		for (TblPic pic : picList)
+		{
+			sessionFactory.getCurrentSession().delete(pic);
+		}
 	}
 
 	@Override

@@ -6,7 +6,7 @@ import java.util.List;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
-import org.apache.velocity.util.ArrayListWrapper;
+import org.apache.struts2.ServletActionContext;
 
 import com.banshan.lifebarServer.common.LCFileAccess;
 import com.banshan.lifebarServer.common.LifeBarDefination;
@@ -306,10 +306,12 @@ public class ProductInfoAction extends BaseJsonAction
 				// DefaultSettings.get("struts.multipart.saveDir") + "/"
 				// + pic.getLink());
 
-				String sour = LifeBarDefination.LB_PIC_UPLOAD_PATH
-						+ pic.getLink();
-				String dest = LifeBarDefination.LB_PIC_RELATIVE_PATH
-						+ pic.getLink();
+				String sour = ServletActionContext.getServletContext()
+						.getRealPath(LifeBarDefination.LB_PIC_UPLOAD_PATH)
+						+ "/" + pic.getLink();
+				String dest = ServletActionContext.getServletContext()
+						.getRealPath(LifeBarDefination.LB_PIC_RELATIVE_PATH)
+						+ "/";
 				if (LCFileAccess.move(sour, dest))
 				{
 					picInfoService.save(pic);
@@ -335,10 +337,12 @@ public class ProductInfoAction extends BaseJsonAction
 		{
 			if (true == fileUploaded)
 			{
-				String sour = LifeBarDefination.LB_PIC_UPLOAD_PATH
-						+ pic.getLink();
-				String dest = LifeBarDefination.LB_PIC_RELATIVE_PATH
-						+ pic.getLink();
+				String sour = ServletActionContext.getServletContext()
+						.getRealPath(LifeBarDefination.LB_PIC_UPLOAD_PATH)
+						+ "/" + pic.getLink();
+				String dest = ServletActionContext.getServletContext()
+						.getRealPath(LifeBarDefination.LB_PIC_RELATIVE_PATH)
+						+ "/";
 				if (LCFileAccess.move(sour, dest))
 				{
 					picInfoService.update(pic);
@@ -360,8 +364,12 @@ public class ProductInfoAction extends BaseJsonAction
 
 	private boolean updatePic(long productId, short picTypeId, String picLink)
 	{
-		String sour = LifeBarDefination.LB_PIC_UPLOAD_PATH + picLink;
-		String dest = LifeBarDefination.LB_PIC_RELATIVE_PATH + picLink;
+		String sour = ServletActionContext.getServletContext()
+				.getRealPath(LifeBarDefination.LB_PIC_UPLOAD_PATH)
+				+ "/" + picLink;
+		String dest = ServletActionContext.getServletContext()
+				.getRealPath(LifeBarDefination.LB_PIC_RELATIVE_PATH)
+				+ "/";
 		TblPic pic = picInfoService.findPicByRefIdAndRefTypeAndType(productId,
 				LifeBarDefination.LB_PIC_TYPE_PRODUCT, picTypeId);
 		if (null != pic)
@@ -378,8 +386,12 @@ public class ProductInfoAction extends BaseJsonAction
 
 	private boolean addPic(long productId, short picTypeId, String picLink)
 	{
-		String sour = LifeBarDefination.LB_PIC_UPLOAD_PATH + picLink;
-		String dest = LifeBarDefination.LB_PIC_RELATIVE_PATH + picLink;
+		String sour = ServletActionContext.getServletContext()
+				.getRealPath(LifeBarDefination.LB_PIC_UPLOAD_PATH)
+				+ "/" + picLink;
+		String dest = ServletActionContext.getServletContext()
+				.getRealPath(LifeBarDefination.LB_PIC_RELATIVE_PATH)
+				+ "/";
 		TblPic pic = new TblPic();
 		pic.setLink(picLink);
 		pic.setRefId(productId);
@@ -388,6 +400,7 @@ public class ProductInfoAction extends BaseJsonAction
 		if (LCFileAccess.move(sour, dest))
 		{
 			picInfoService.save(pic);
+			pic.setId(null);
 			return true;
 		}
 		return false;

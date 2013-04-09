@@ -25,6 +25,35 @@
 				<!-- <param name="includeProperties">person.*, person\.name</param> -->
 				<param name="includeProperties">result,message,productList.*</param>
 			</result>
+			<result name="suborgs" type="json">
+				<param name="ignoreHierarchy">false</param>
+				<param name="excludeNullProperties">true</param>
+				<!-- <param name="includeProperties">person.*, person\.name</param> -->
+				<param name="includeProperties">result,message,subOrgList.*</param>
+			</result>
+			<result name="discountcards" type="json">
+				<param name="ignoreHierarchy">false</param>
+				<param name="excludeNullProperties">true</param>
+				<!-- <param name="includeProperties">person.*, person\.name</param> -->
+				<param name="includeProperties">result,message,discountCardList.*</param>
+			</result>
+			<result name="addsuborg" type="json">
+				<param name="ignoreHierarchy">false</param>
+				<param name="excludeNullProperties">true</param>
+				<param name="includeProperties">result,message,orgId</param>
+			</result>
+			<result name="adddiscountcard" type="json">
+				<param name="ignoreHierarchy">false</param>
+				<param name="excludeNullProperties">true</param>
+				<param name="includeProperties">result,message,cardId</param>
+			</result>
+			
+			<result name="pics" type="json">
+				<param name="ignoreHierarchy">false</param>
+				<param name="excludeNullProperties">true</param>
+				<!-- <param name="includeProperties">person.*, person\.name</param> -->
+				<param name="includeProperties">result,message,picList.*</param>
+			</result>
 			<result name="addproduct" type="json">
 				<param name="ignoreHierarchy">false</param>
 				<param name="excludeNullProperties">true</param>
@@ -76,6 +105,7 @@
 				<!-- <param name="includeProperties">person.*, person\.name</param> -->
 				<param name="includeProperties">result,message,typeList.*</param>
 			</result>
+			
 			<result name="picfortype" type="json">
 				<param name="ignoreHierarchy">false</param>
 				<param name="excludeNullProperties">true</param>
@@ -117,5 +147,23 @@
 				<param name="includeProperties">result,message,tmpFilePath</param>
 			</result> 
         </action> 
+        <action name="json_*" method="{1}" class="fileUpload">
+        <result name="fail" type="json">
+				<param name="ignoreHierarchy">false</param>
+				<param name="excludeNullProperties">true</param>
+				<param name="includeProperties">result,message</param>
+			</result>
+			<result name="success" type="json">
+				<param name="ignoreHierarchy">false</param>
+				<param name="excludeNullProperties">true</param>
+				<param name="includeProperties">result,message</param>
+			</result>
+			<result name="pics" type="json">
+				<param name="ignoreHierarchy">false</param>
+				<param name="excludeNullProperties">true</param>
+				<!-- <param name="includeProperties">person.*, person\.name</param> -->
+				<param name="includeProperties">result,message,picList.*</param>
+			</result>
+		</action>
     </package> 
 </struts>

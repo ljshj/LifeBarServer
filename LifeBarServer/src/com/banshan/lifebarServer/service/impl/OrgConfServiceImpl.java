@@ -14,7 +14,7 @@ import com.banshan.lifebarServer.service.OrgConfService;
 public class OrgConfServiceImpl implements OrgConfService
 {
 
-@Resource private SessionFactory sessionFactory;
+	@Resource private SessionFactory sessionFactory;
 	
 	@Override
 	public void save(TblCompanyConf t) {

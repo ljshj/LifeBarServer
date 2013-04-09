@@ -11,7 +11,7 @@
             <generator class="identity" />
         </id>
         <property name="account" type="java.lang.String">
-            <column name="account" length="100" not-null="true" unique="true" />
+            <column name="account" length="100" not-null="true" />
         </property>
         <property name="cname" type="java.lang.String">
             <column name="cname" length="100" not-null="true" />
